@@ -21,10 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
-
-        let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
-        let controller = masterNavigationController.topViewController as! MasterViewController
-        controller.managedObjectContext = self.persistentContainer.viewContext
+        splitViewController.preferredDisplayMode = .allVisible
+        splitViewController.presentsWithGesture = false
+        splitViewController.displayModeButtonItem.isEnabled = false
         return true
     }
 
@@ -63,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return false
     }
+    
+    
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
